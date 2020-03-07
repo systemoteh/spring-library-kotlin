@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: systemoteh
+      changes:
+        - createTable:
+            tableName: author
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_date
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: systemoteh
+      changes:
+        - insert:
+            tableName: author
+            columns:
+              - column:
+                  name: name
+                  value: Nekrasov
+              - column:
+                  name: birth_date
+                  value: 1821-11-28
+  - changeSet:
+      id: 3
+      author: systemoteh
+      changes:
+        - insert:
+            tableName: author
+            columns:
+              - column:
+                  name: name
+                  value: Гоголь
+              - column:
+                  name: birth_date
+                  value: 1809-03-19
