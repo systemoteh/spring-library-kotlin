@@ -12,8 +12,8 @@ import javax.persistence.*
 @SelectBeforeUpdate
 data class Vote(
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_sequence")
-        @SequenceGenerator(name = "vote_sequence", sequenceName = "vote_id_seq")
+        @SequenceGenerator(name = "vote_generator", sequenceName = "vote_id_seq", allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_generator")
         val id: Long,
         val value: String,
         @Column(name = "book_id")

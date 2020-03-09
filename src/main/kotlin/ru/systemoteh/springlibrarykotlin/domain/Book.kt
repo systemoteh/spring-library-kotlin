@@ -12,11 +12,12 @@ import javax.persistence.*
 @SelectBeforeUpdate
 data class Book(
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_sequence")
-        @SequenceGenerator(name = "book_sequence", sequenceName = "book_id_seq")
+        @SequenceGenerator(name = "book_generator", sequenceName = "book_id_seq", allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_generator")
         val id: Long = 0,
         val name: String,
         val isbn: String,
+        val description: String,
         @Column(name = "page_count")
         val pageCount: Int,
         @Column(name = "publish_year")
@@ -29,15 +30,18 @@ data class Book(
         val totalVoteCount: Long,
         @Column(name = "avg_rating")
         val avgRating: Long,
+
         @ManyToOne @JoinColumn
         val genre: Genre,
         @ManyToOne @JoinColumn
         val author: Author,
         @ManyToOne @JoinColumn
         val publisher: Publisher,
+
         @Lob
         @Column(updatable = false)
         private val content: ByteArray,
+        @Lob
         private val image: ByteArray
 ) {
     override fun equals(other: Any?): Boolean {

@@ -12,8 +12,8 @@ import javax.persistence.*
 @SelectBeforeUpdate
 data class Publisher(
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_sequence")
-        @SequenceGenerator(name = "publisher_sequence", sequenceName = "publisher_id_seq")
+        @SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq", allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_generator")
         val id: Long = 0,
         val name: String,
         @Basic(fetch = FetchType.LAZY)

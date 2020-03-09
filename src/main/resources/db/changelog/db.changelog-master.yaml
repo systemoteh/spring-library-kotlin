@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -27,25 +27,178 @@ databaseChangeLog:
       id: 2
       author: systemoteh
       changes:
-        - insert:
-            tableName: author
+        - createTable:
+            tableName: genre
             columns:
               - column:
-                  name: name
-                  value: Nekrasov
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: birth_date
-                  value: 1821-11-28
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
   - changeSet:
       id: 3
       author: systemoteh
       changes:
-        - insert:
-            tableName: author
+        - createTable:
+            tableName: publisher
             columns:
               - column:
-                  name: name
-                  value: Гоголь
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: birth_date
-                  value: 1809-03-19
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: systemoteh
+      changes:
+        - createTable:
+            tableName: vote
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: value
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 5
+      author: systemoteh
+      changes:
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: isbn
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: page_count
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publish_year
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: view_count
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_rating
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_vote_count
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: avg_rating
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: genre_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publisher_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: blob
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image
+                  type: blob
+                  constraints:
+                    nullable: false
+
+
+#  - changeSet:
+#      id: xxx
+#      author: systemoteh
+#      changes:
+#        - insert:
+#            tableName: author
+#            columns:
+#              - column:
+#                  name: name
+#                  value: Nekrasov
+#              - column:
+#                  name: birth_date
+#                  value: 1821-11-28
+#  - changeSet:
+#      id: xxx
+#      author: systemoteh
+#      changes:
+#        - insert:
+#            tableName: author
+#            columns:
+#              - column:
+#                  name: name
+#                  value: Гоголь
+#              - column:
+#                  name: birth_date
+#                  value: 1809-03-19

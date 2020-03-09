@@ -13,10 +13,11 @@ import javax.persistence.*
 @SelectBeforeUpdate
 data class Author(
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_sequence")
-        @SequenceGenerator(name = "author_sequence", sequenceName = "author_id_seq")
+        @SequenceGenerator(name = "author_generator", sequenceName = "author_id_seq", allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_generator")
         val id: Long = 0,
         val name: String,
+        @Temporal(TemporalType.DATE)
         @Column(name = "birth_date")
         val birthDate: Date
 )

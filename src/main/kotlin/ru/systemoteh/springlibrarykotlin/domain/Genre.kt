@@ -12,8 +12,8 @@ import javax.persistence.*
 @SelectBeforeUpdate
 data class Genre(
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_sequence")
-        @SequenceGenerator(name = "genre_sequence", sequenceName = "genre_id_seq")
+        @SequenceGenerator(name = "genre_generator", sequenceName = "genre_id_seq", allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_generator")
         val id: Long = 0,
         val name: String,
         @Basic(fetch = FetchType.LAZY)
